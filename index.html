@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="墨界 AI 小说创作工作台，八大智能体协同完成长篇创作。" />
+  <title>墨界 · AI 小说创作工作台</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+  <div id="landing" class="landing">
+    <nav class="nav shell"><a class="brand" href="#">墨<span>界</span></a><div class="navlinks"><a href="#features">核心功能</a><a href="#agents">智能体</a><a href="#workflow">创作流程</a></div><button class="btn ghost" data-enter>进入工作台</button></nav>
+    <main>
+      <section class="hero shell"><div class="eyebrow">新用户即享完整创作体验</div><h1>一个灵感，<em>八个 Agent</em><br/>协作写成一部小说</h1><p>从故事大纲、章节规划到正文精修，让设定、人物与伏笔在长篇创作中始终一致。</p><div class="idea"><textarea id="heroIdea" placeholder="例如：一个只能看见别人死亡倒计时的修表匠，发现自己的钟停了……"></textarea><button class="btn primary" data-enter>开始创作 <span>→</span></button></div><div class="trust"><span>✓ 无需整理灵感</span><span>✓ 自动构建世界观</span><span>✓ 章节记忆不断档</span></div></section>
+      <section id="features" class="showcase shell"><div class="window"><div class="windowbar"><i></i><i></i><i></i><b>墨界创作工作台 · 星海余烬</b><span>创作中</span></div><div class="mockapp"><aside><strong>作品目录</strong><small>序章：坠落的星</small><small class="active">第一章：无名信号</small><small>第二章：深空来客</small></aside><article><div class="agentline"><b>正文写作 Agent</b><span>实时生成中</span></div><h3>第一章 · 无名信号</h3><p>舷窗之外，群星像被冻结的火焰。林默把耳朵贴近那台来自旧纪元的接收器，杂音深处，有人一遍遍念着他的名字。</p><p>而那声音，来自三百年后的地球。</p><div class="status"><span>角色记忆已同步</span><span>剧情检查通过</span></div></article></div></div></section>
+      <section id="agents" class="section shell"><div class="sectionhead"><span>协同创作系统</span><h2>八位专业 Agent，各司其职</h2><p>每个 Agent 都读取同一份作品记忆，像一间真正的编辑部。</p></div><div id="agentCards" class="agentcards"></div></section>
+      <section id="workflow" class="section shell"><div class="sectionhead"><span>从 0 到 1</span><h2>把创作复杂度留给 AI</h2></div><div class="steps"><div><b>01</b><h3>说出脑洞</h3><p>一句话、几个关键词，甚至一段凌乱的灵感都可以。</p></div><div><b>02</b><h3>建立作品圣经</h3><p>自动生成世界观、角色关系、冲突与主线节奏。</p></div><div><b>03</b><h3>协作写作</h3><p>按章生成、检查、润色，并持续更新长期记忆。</p></div><div><b>04</b><h3>导出发布</h3><p>版本可追溯，全文可导出为 Markdown 或纯文本。</p></div></div></section>
+      <section class="cta shell"><h2>你的下一部作品，从一个念头开始</h2><p>不必等灵感变得完整。先写下第一句，剩下的交给创作团队。</p><button class="btn light" data-enter>免费开始创作 →</button></section>
+    </main><footer class="shell"><a class="brand">墨<span>界</span></a><p>AI 辅助创作工具 · 内容版权归创作者所有</p><p>© 2026 Inkverse Studio</p></footer>
+  </div>
+
+  <div id="app" class="app hidden">
+    <header class="topbar"><a class="brand">墨<span>界</span></a><button id="projectSwitch" class="project-switch">未命名作品⌄</button><div class="top-actions"><span id="saveState">已保存</span><button class="iconbtn" id="settingsBtn" title="模型设置">⚙</button><button class="btn primary small" id="exportBtn">导出作品</button></div></header>
+    <div class="workspace">
+      <aside class="sidebar"><button class="new-project" id="newProject">＋ 新建作品</button><nav id="sideNav"><button class="active" data-view="editor">▤ 章节写作</button><button data-view="outline">◇ 故事大纲</button><button data-view="characters">♙ 角色档案</button><button data-view="world">◎ 世界设定</button><button data-view="memory">◫ 长期记忆</button></nav><div class="chapters"><div class="side-title"><span>章节目录</span><button id="addChapter">＋</button></div><div id="chapterList"></div></div><div class="sidebar-foot"><button id="backHome">← 返回首页</button></div></aside>
+      <main class="workmain">
+        <section id="editorView" class="view"><div class="editor-head"><div><input id="chapterTitle" value="第一章：故事的开端" /><span id="wordCount">0 字</span></div><div><button class="btn ghost small" id="historyBtn">版本记录</button><button class="btn dark small" id="saveBtn">保存</button></div></div><textarea id="editor" class="editor" placeholder="在这里开始写作，或从右侧选择一个 Agent……"></textarea></section>
+        <section id="outlineView" class="view hidden docview"><h2>故事大纲</h2><p>主线、冲突和阶段节奏将在这里沉淀。</p><textarea id="outlineText" placeholder="点击大纲构建 Agent，或直接编辑你的故事大纲……"></textarea></section>
+        <section id="charactersView" class="view hidden docview"><div class="dochead"><div><h2>角色档案</h2><p>角色设定会自动进入创作上下文。</p></div><button class="btn primary small" id="addCharacter">＋ 新角色</button></div><div id="characterGrid" class="character-grid"></div></section>
+        <section id="worldView" class="view hidden docview"><h2>世界设定</h2><p>记录规则、地点、势力、历史与专有名词。</p><textarea id="worldText" placeholder="例如：灵力体系分为……"></textarea></section>
+        <section id="memoryView" class="view hidden docview"><h2>长期记忆</h2><p>角色记忆 Agent 会按章节提炼事实，防止长篇设定漂移。</p><textarea id="memoryText" placeholder="尚无记忆。完成章节后运行角色记忆 Agent。"></textarea></section>
+      </main>
+      <aside class="agentpanel"><div class="panel-title"><div><span class="pulse"></span><b>AI 创作团队</b></div><small>8 Agents ready</small></div><div id="agentList" class="agent-list"></div><div id="agentChat" class="agent-chat"><div class="chat-empty"><b>选择一位 Agent 开始</b><p>它会结合你的大纲、设定与当前章节工作。</p></div></div><div class="promptbox"><textarea id="agentPrompt" placeholder="补充要求，例如：节奏更紧张，加入一次反转……"></textarea><button id="runAgent">↑</button></div></aside>
+    </div>
+  </div>
+
+  <dialog id="modal"><form method="dialog"><button class="close">×</button><div id="modalBody"></div></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>

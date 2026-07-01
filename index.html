@@ -6,6 +6,7 @@
   <meta name="description" content="墨界 AI 小说创作工作台，八大智能体协同完成长篇创作。" />
   <title>墨界 · AI 小说创作工作台</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="continuous.css" />
 </head>
 <body>
   <div id="toast" class="toast"></div>
@@ -31,11 +32,12 @@
         <section id="worldView" class="view hidden docview"><h2>世界设定</h2><p>记录规则、地点、势力、历史与专有名词。</p><textarea id="worldText" placeholder="例如：灵力体系分为……"></textarea></section>
         <section id="memoryView" class="view hidden docview"><h2>长期记忆</h2><p>角色记忆 Agent 会按章节提炼事实，防止长篇设定漂移。</p><textarea id="memoryText" placeholder="尚无记忆。完成章节后运行角色记忆 Agent。"></textarea></section>
       </main>
-      <aside class="agentpanel"><div class="panel-title"><div><span class="pulse"></span><b>AI 创作团队</b></div><small>8 Agents ready</small></div><div id="agentList" class="agent-list"></div><div id="agentChat" class="agent-chat"><div class="chat-empty"><b>选择一位 Agent 开始</b><p>它会结合你的大纲、设定与当前章节工作。</p></div></div><div class="promptbox"><textarea id="agentPrompt" placeholder="补充要求，例如：节奏更紧张，加入一次反转……"></textarea><button id="runAgent">↑</button></div></aside>
+      <aside class="agentpanel"><div class="panel-title"><div><span class="pulse"></span><b>AI 创作团队</b></div><small>8 Agents ready</small></div><div id="agentList" class="agent-list"></div><div id="agentChat" class="agent-chat"><div class="chat-empty"><b>选择一位 Agent 开始</b><p>它会结合你的大纲、设定与当前章节工作。</p></div></div><div class="continuous-bar"><label><input id="autoContinue" type="checkbox" checked> 自动写入并连续生成</label><label>目标 <input id="targetWords" type="number" value="3000" min="500" max="20000" step="500"> 字</label><button id="stopAgent" class="hidden">停止</button></div><div class="promptbox"><textarea id="agentPrompt" placeholder="补充要求，例如：节奏更紧张，加入一次反转……"></textarea><button id="runAgent">↑</button></div></aside>
     </div>
   </div>
 
   <dialog id="modal"><form method="dialog"><button class="close">×</button><div id="modalBody"></div></form></dialog>
   <script src="app.js"></script>
+  <script src="continuous-init.js"></script>
 </body>
 </html>

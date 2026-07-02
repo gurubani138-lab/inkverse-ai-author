@@ -23,3 +23,26 @@
   cursor: pointer;
 }
 .continuous-bar + .promptbox { margin-top: 7px; }
+
+/* Keep the composer fixed while long Agent responses scroll independently. */
+.agentpanel {
+  min-height: 0;
+  overflow: hidden;
+}
+.agent-chat {
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: #aaa197 #eee9e1;
+}
+.agent-chat::-webkit-scrollbar { width: 10px; }
+.agent-chat::-webkit-scrollbar-track { background: #eee9e1; }
+.agent-chat::-webkit-scrollbar-thumb {
+  background: #aaa197;
+  border: 2px solid #eee9e1;
+  border-radius: 999px;
+}
+.agent-chat::-webkit-scrollbar-thumb:hover { background: #82796e; }
